@@ -1,0 +1,270 @@
+%\input{imported_packages.tex}
+
+
+
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subparagraph}
+{\normalfont\normalsize\bfseries}{\thesubparagraph}{0.8em}{}
+\titlespacing*{\subparagraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+%making sections not have numbers and paragraphs appear as bookmarks
+%\makeatletter
+%\renewcommand\@seccntformat[1]{}
+%\makeatother
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{5}
+
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{sublemma}{Lemma}[lemma]
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+
+\patchcmd{\endproof}% <cmd>
+  {\endtrivlist}% <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}% <succes><failure>
+  
+  \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+  
+\newcommand{\argmin}{\mathop{\mathrm{arg\,min}}}
+\newcommand{\argmax}{\mathop{\mathrm{arg\,max}}}
+
+\newcommand{\arginf}{\mathop{\mathrm{arg\,inf}}}
+\newcommand{\argsup}{\mathop{\mathrm{arg\,sup}}}
+
+
+
+\DeclarePairedDelimiter\ab{(}{)}  %\ab*{...} will give the \left(...\right)
+\DeclarePairedDelimiter\absq{[}{]}  %\abs*{...} will give the \left[...\right]
+\DeclarePairedDelimiter\intl{.}{|}  %\intl*{..} for settign integration limits -- only do if not a raw number
+\DeclarePairedDelimiter\abrac{\langle}{\rangle} %\abrac*{..} will give <...>
+
+\newenvironment{amatrix}[1]{% defines an augmented matrix used as \begin{amatrix}{n} for n lines before the vertical bar
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+} %https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
+
+\newenvironment{amatrixG}[2]{% defines an augmented matrix used as \begin{amatrix}{n}{m} for n lines before the vertical bar and m lines after
+  \left(\begin{array}{@{}*{#1}{c}|@{}*{#2}{c}}
+}{%
+  \end{array}\right)
+}
+
+\newcommand{\set}[1]{\left\{ #1 \right \} }
+
+\newcommand{\creg}[1]{\left[ #1 \right] }
+
+\newcommand{\intls}[1]{\Big[ #1 \Big]}
+
+\newcommand{\intll}[1]{#1 \Big|}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+
+\newcommand{\bra}[1]{\left\langle #1 \right|}
+
+\newcommand{\ket}[1]{\left| #1 \right\rangle}
+
+\newcommand{\braket}[2]{\left\langle#1 \middle| #2 \right\rangle}
+\newcommand{\braketE}[3]{\left\langle#1 \middle| #2 \middle| #3 \right\rangle}
+
+
+\newcommand{\partialD}[2]{\dfrac{\partial #1} {\partial #2} }
+
+\newcommand{\partialSD}[2]{\dfrac{\partial^2 #1} {\partial #2 ^2} }
+
+\newcommand{\totalD}[2]{\dfrac{d#1}{d#2}}
+
+\newcommand{\totalSD}[2]{\dfrac{d^2 #1}{d #2^2}}
+
+\newcommand{\divergE}[1]{\dfrac{\partial #1 _x}{\partial x} + \dfrac{\partial #1 _y}{\partial y} + \dfrac{\partial #1 _z}{\partial z}}
+
+\newcommand{\curlM}[1]{\begin{vmatrix}
+  \hat i & \hat j & \hat k\\[4pt]
+  %
+  \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}\\[10pt]
+  %
+  #1 _x & #1 _y & #1 _z\\
+\end{vmatrix}}
+
+\newcommand{\curlE}[1]{
+  \left( \dfrac{\partial #1_z}{\partial y} - \dfrac{\partial #1 _y}{\partial z}  \right)  \hat i -
+  %
+  \left( \dfrac{\partial #1 _z}{\partial x} - \dfrac{\partial #1 _x}{\partial z}  \right)  \hat j +
+  %
+  \left( \dfrac{\partial #1 _y}{\partial x} - \dfrac{\partial #1 _x}{\partial y}  \right)  \hat k
+}
+
+
+\newcommand{\partialSDE}[3] {  %d1/(d2d3)
+  \dfrac{\partial^2 #1}{\partial #2 \partial #3}
+}
+
+\newcommand{\e}{\textrm e}  %for e = 2.71828..
+
+\newcommand{\dd}{\,\textrm d}
+
+\newcommand{\iiintt}{\iiint\limits}
+
+\newcommand{\iintt}{\iint\limits}
+
+\newcommand{\intt}{\int\limits}
+
+\newcommand{\ointt}{\oint\limits}
+
+\newcommand{\oiintt}{\oiint\limits}
+
+\newcommand{\sign}{\textrm{sign}}
+
+\newcommand{\erf}{\textrm{erf}}
+
+\newcommand{\sinc}{\textrm{sinc}}
+\newcommand{\sech}{\textrm{sech}}
+
+
+\newcommand*{\dt}[1]{%
+  \accentset{\mbox{\large\bfseries .}}{#1}}%dot for time derivative
+\newcommand*{\ddt}[1]{%
+  \accentset{\mbox{\large\bfseries .\hspace{-0.25ex}.}}{#1}}  %double dot for time derivative
+
+\newcommand{\olsi}[1]{\,\overline{\!{#1}}} % overline short italic
+
+
+
+\newcommand{\footerFontSize}{10}  %the default latex font size
+
+%Redefine the plain page style
+\fancypagestyle{plain} {%
+  \fancyhf{}%
+  \fancyfoot[L]{\fontsize{\footerFontSize}{\footerFontSize}\selectfont Page \thepage \ of \pageref{LastPage}}%
+  \fancyfoot[R]{\fontsize{\footerFontSize}{\footerFontSize}\selectfont Jacob Westerhout}
+  \renewcommand{\headrulewidth}{0pt}% Line at header invisible
+  \renewcommand{\footrulewidth}{0.4pt}%Line at footer thin
+}
+
+\newcommand{\sdfrac}[2]{\mbox{\small$\displaystyle\frac{#1}{#2}$}}
+\newcommand{\fdfrac}[2]{\mbox{\footnotesize$\displaystyle\frac{#1}{#2}$}}
+\newcommand{\ltfrac}[2]{\mbox{\large$\frac{#1}{#2}$}}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+%input 1 determines line length
+\newcommand{\fullhline}[1]{\par\noindent\makebox[\linewidth]{\rule{\paperwidth}{#1 pt}}\newline}  %line across the whole page
+\newcommand{\marginhline}[1]{\par\noindent\rule{\textwidth}{#1 pt}\newline}  %line to the margins
+
+
+
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+
+\newcommand{\comb}[2]{
+\begin{pmatrix}
+#1\\#2
+\end{pmatrix}
+}
+
+\newcommand{\given}{\mathrel{\stretchto{\mid}{3ex}}}
+
+\newcommand{\expec}[1]{\mathbb E \left( #1 \right)}
+
+\newcommand{\unif}[1]{\textrm U\left[#1\right]}
+
+\newcommand{\norm}[1]{\textrm N\left(#1\right)}
+
+\newcommand{\avg}[1]{\left \langle #1 \right \rangle}
+
+\newcommand{\var}[1]{\textrm{Var} \left( #1 \right)}
+
+\newcommand{\cov}[1]{\textrm{Cov} \left( #1 \right)}
+
+
+\newcommand{\uad}{\hspace{3pt}}
+
+
+
+
+\newcommand{\bvec}[1]{\boldsymbol{#1}}  %vector notated as bold
+%{\mathbf{#1}}
+
+\newcommand{\avec}[1]{\vv{#1}} %{\overrightarrow{#1}}
+
+\newcommand{\avecs}[2]{\vv*{#1}{#2}}  %special version of \avec for dealing with subscripts
+
+\newcommand{\inprod}[2]{\left\langle#1,#2 \right\rangle}  %inner product notation
+
+\newcommand{\Tr}[1]{\textrm{Tr}\left(#1\right)}   %trace
+
+\newcommand{\proj}[2]{\textrm{proj}_{#1}\left(#2\right)}
+
+\newcommand{\dotprod}{\cdotp}
+
+\newcommand{\im}{\hat{\imath}}
+
+\newcommand{\jm}{\hat{\jmath}}
+
+\newcommand{\km}{\hat k}
+
+\newcommand{\dive}{\nabla \dotprod}
+
+\newcommand{\matb}[4]{ %2x2 matrix
+\begin{pmatrix}
+#1 & #2\\
+#3 & #4
+\end{pmatrix}
+}
+
+\newcommand{\spanv}[1]{\textrm{span}\left\{  #1 \right\}}
+
+\newcommand{\transm}[2]{P_{#1 \to #2}}
+
+\newcommand{\tra}{\textrm{tr}} %trace of a matrix
+
+
+\newcommand{\crossprod}[6]{\begin{vmatrix}
+\im & \jm & \km\\
+#1 & #2 & #3\\
+#4 & #5 & #6
+\end{vmatrix}}
+
+
+\renewcommand{\norm}[1]{\left|\left| #1 \right| \right|}
+
+\newcommand{\atan}{\tan^{-1}}
+
+\newcommand{\vecc}[3]{\begin{pmatrix}
+#1\\#2\\#3
+\end{pmatrix}}
+
+\newcommand{\vecd}[4]{\begin{pmatrix}
+#1\\#2\\#3\\#4
+\end{pmatrix}}
+
+%\newcommand{\ker}[1]{\textrm{ker}\left(#1\right)}
+
+
+
+
+\newcommand{\WfigureNC}[2]{\begin{figure}[H]	%1 file loc, 2 width
+	\begin{center}
+		\includegraphics[width=#2\linewidth]{#1}
+	\end{center}
+\end{figure}}
+
+
+\usepackage{cleveref}
+
+\let\cite\parencite 
+
+\pagestyle{plain} %for fancy footer to work correctly
